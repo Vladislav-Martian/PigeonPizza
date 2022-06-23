@@ -5,29 +5,26 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using PigeonPizza.Contexts;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Routing;
 
 namespace PigeonPizza
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IApplicationBuilder app, IWebHostEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             Configuration = configuration;
-            App = app;
             Env = env;
         }
 
         public IConfiguration Configuration { get; }
-        public IApplicationBuilder App { get; }
         public IWebHostEnvironment Env { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -48,39 +45,41 @@ namespace PigeonPizza
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure()
+        public void Configure(IApplicationBuilder app)
         {
             if (Env.IsDevelopment())
             {
-                App.UseDeveloperExceptionPage();
-                App.UseSwagger();
-                // Example endpoint: «/swagger/v1_0_0/swagger.json»
-                App.UseSwaggerUI(c => c.SwaggerEndpoint(GetSwaggerEndpoint(), string.Concat(
+                app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                // Example endpoint: «/swagger/v1.0.0/swagger.json»
+                app.UseSwaggerUI(c => c.SwaggerEndpoint(GetSwaggerEndpoint(), string.Concat(
                     Configuration["Meta:Name"].ToString(),
                     " ",
                     Configuration["Meta:Version"].ToString()))); // Example: «PigeonPizza v1.0.0»
             }
 
-            App.UseHttpsRedirection();
+            app.UseHttpsRedirection();
 
-            App.UseRouting();
+            app.UseRouting();
 
-            App.UseAuthorization();
+            app.UseAuthorization();
 
-            App.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            app.UseEndpoints(ConfigureRoutes);
+        }
+
+        private void ConfigureRoutes(IEndpointRouteBuilder endpoints)
+        {
+            /*endpoints.MapControllerRoute(
+                name: "default",
+                pattern: "{controller=Home}/{action=Index}/{id:int?}");*/
+            endpoints.MapControllers();
+
         }
 
         #region Helpers
         public string GetSwaggerEndpoint()
         {
-            string versionWithoutPoints = Configuration["Meta:Version"].ToString().Replace('.', '_');
-            string fullname = string.Concat(
-                Configuration["Meta:Name"].ToString(), 
-                " ", 
-                Configuration["Meta:Version"].ToString());
+            string versionWithoutPoints = Configuration["Meta:Version"].ToString();
             return $"/swagger/{versionWithoutPoints}/swagger.json";
         }
         #endregion
