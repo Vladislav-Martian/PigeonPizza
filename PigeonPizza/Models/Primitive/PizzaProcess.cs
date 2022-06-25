@@ -1,10 +1,11 @@
-﻿namespace PigeonPizza.Models
+﻿namespace PigeonPizza.Models.Primitive
 {
-    public class PizzaSize
+    public class PizzaProcess
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public bool Available { get; set; }
 
         #region Useful props
         public double PriceModifier { get; set; } = 1;

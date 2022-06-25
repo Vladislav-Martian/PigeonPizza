@@ -13,6 +13,7 @@ using PigeonPizza.Contexts;
 using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
+using PigeonPizza.Data;
 
 namespace PigeonPizza
 {
@@ -65,19 +66,25 @@ namespace PigeonPizza
             app.UseAuthorization();
 
             app.UseEndpoints(ConfigureRoutes);
+
+            // Seed Database
+            SeedTheData(app);
+        }
+
+        #region Helpers
+
+        private void SeedTheData(IApplicationBuilder app)
+        {
+            DbDataSeeder.SeedPrimitives(app);
+            DbDataSeeder.SeedTemplates(app);
         }
 
         private void ConfigureRoutes(IEndpointRouteBuilder endpoints)
         {
-            /*endpoints.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id:int?}");*/
             endpoints.MapControllers();
-
         }
 
-        #region Helpers
-        public string GetSwaggerEndpoint()
+        private string GetSwaggerEndpoint()
         {
             string versionWithoutPoints = Configuration["Meta:Version"].ToString();
             return $"/swagger/{versionWithoutPoints}/swagger.json";

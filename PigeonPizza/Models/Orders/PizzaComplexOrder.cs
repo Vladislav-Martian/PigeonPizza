@@ -1,4 +1,4 @@
-﻿namespace PigeonPizza.Models
+﻿namespace PigeonPizza.Models.Orders
 {
     public class PizzaComplexOrder
     {

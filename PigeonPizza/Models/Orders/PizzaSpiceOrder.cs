@@ -1,4 +1,6 @@
-﻿namespace PigeonPizza.Models
+﻿using PigeonPizza.Models.Primitive;
+
+namespace PigeonPizza.Models.Orders
 {
     public class PizzaSpiceOrder
     {
