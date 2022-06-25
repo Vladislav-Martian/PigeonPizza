@@ -9,9 +9,5 @@
         public PizzaToppingOrder[] ToppingOrder { get; set; }
         public PizzaSpiceOrder[] SpiceOrder { get; set; }
         #endregion
-
-        #region Other
-        public string Comment { get; set; } = null;
-        #endregion
     }
 }

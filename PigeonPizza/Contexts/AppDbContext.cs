@@ -35,7 +35,6 @@ namespace PigeonPizza.Contexts
         public DbSet<UserSavedOrderTemplates> UserSavedOrderTemplates { get; set; }
         #endregion
         #region Other
-        public DbSet<PizzaComplexTemplate> PizzaComplexTemplates { get; set; }
         #endregion
         #endregion
 
