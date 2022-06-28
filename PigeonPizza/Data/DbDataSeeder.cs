@@ -2,7 +2,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using PigeonPizza.Contexts;
 using PigeonPizza.Models.Primitive;
-using PigeonPizza.Models.Other;
 using PigeonPizza.Models.Orders;
 using PigeonPizza.Models.Controls;
 using System.Linq;

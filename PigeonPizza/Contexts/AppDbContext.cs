@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Models.Controls;
 using PigeonPizza.Models.Orders;
-using PigeonPizza.Models.Other;
 using PigeonPizza.Models.Primitive;
 
 namespace PigeonPizza.Contexts
