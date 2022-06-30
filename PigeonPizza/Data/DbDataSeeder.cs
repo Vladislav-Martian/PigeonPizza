@@ -5,6 +5,7 @@ using PigeonPizza.Models.Primitive;
 using PigeonPizza.Models.Orders;
 using PigeonPizza.Models.Controls;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace PigeonPizza.Data
 {
@@ -368,67 +369,112 @@ namespace PigeonPizza.Data
                 context.Database.EnsureCreated();
 
                 #region Actual seeding
+                // Ingridients orders making
+                PizzaComplexOrder PepperoniOrder = new PizzaComplexOrder()
+                {
+                    PizzaSauce = new List<PizzaSauceOrder>(),
+                    BaseOrder = new List<PizzaBaseOrder>(),
+                    SpiceOrder = null,
+                    ToppingOrder = new List<PizzaToppingOrder>(),
+                };
+
+                if (!context.PizzaBaseOrders.Any())
+                {
+
+                    var order1 = new PizzaBaseOrder()
+                    {
+                        Order = context.PizzaBases.First(x => x.Id == 0),
+                        Amount = 1.0
+                    };
+                    context.PizzaBaseOrders.Add(order1);
+                    var order2 = new PizzaBaseOrder()
+                    {
+                        Order = context.PizzaBases.First(x => x.Id == 2),
+                        Amount = 1.0
+                    };
+                    context.PizzaBaseOrders.Add(order2);
+
+                    context.SaveChanges();
+
+                    PepperoniOrder.BaseOrder.Add(order1);
+                    PepperoniOrder.BaseOrder.Add(order2);
+                }
+
+                if (!context.PizzaSauceOrders.Any())
+                {
+                    var order1 = new PizzaSauceOrder()
+                    {
+                        Order = context.PizzaSauces.First(x => x.Id == 7),
+                        Amount = 1.0
+                    };
+                    context.PizzaSauceOrders.Add(order1);
+
+                    context.SaveChanges();
+
+                    PepperoniOrder.PizzaSauce.Add(order1);
+                }
+
+                if (!context.PizzaToppingOrders.Any())
+                {
+                    var order1 = new PizzaToppingOrder()
+                    {
+                        Order = context.PizzaToppings.First(x => x.Id == 2),
+                        Amount = 1.0
+                    };
+                    context.PizzaToppingOrders.Add(order1);
+
+                    context.SaveChanges();
+
+                    PepperoniOrder.ToppingOrder.Add(order1);
+                }
+                // Complex order
+                if (!context.PizzaComplexOrders.Any())
+                {
+                    context.PizzaComplexOrders.Add(PepperoniOrder);
+                    context.SaveChanges();
+                }
+
+                // ProcessOrder
+                var processing = new List<PizzaProcessOrder>
+                {
+                    new PizzaProcessOrder
+                    {
+                        Order = context.PizzaProcesses.First(x => x.Id == 0),
+                        Amount = 1
+                    },
+                    new PizzaProcessOrder
+                    {
+                        Order = context.PizzaProcesses.First(x => x.Id == 2),
+                        Amount = 3
+                    }
+                };
+                if (!context.PizzaProcessOrders.Any())
+                {
+                    context.PizzaProcessOrders.Add(processing[0]);
+                    context.PizzaProcessOrders.Add(processing[1]);
+                    context.SaveChanges();
+                }
+
+                // Pizza order
+                var order = new PizzaOrder()
+                {
+                    Name = "Pepperoni pizza",
+                    Comment = "Tomato-sauce, 2-cheese-base, pepperoni topping.",
+                    Size = context.PizzaSizes.First(x => x.Id == 2),
+                    Dough = context.PizzaDoughs.First(x => x.Id == 0),
+                    PrimeComplex = PepperoniOrder,
+                    SecondComplex = null,
+                    Processing = processing
+                };
+
                 // Order Templates
                 if (!context.OrderTemplates.Any())
                 {
-                    context.OrderTemplates.AddRange(new OrderTemplate[]
+                    context.OrderTemplates.Add(new OrderTemplate
                     {
-                        new OrderTemplate()
-                        {
-                            Name = "Pizza Pepperoni",
-                            Description = "",
-                            Order = new PizzaOrder()
-                            {
-                                Name = "",
-                                Comment = "",
-                                Size = new PizzaSize() 
-                                {
-                                    Id = 0
-                                },
-                                Dough = new PizzaDough()
-                                {
-                                    Id = 0
-                                },
-                                Cooking = 2,
-                                Slicing = 3,
-                                PrimeComplex = new PizzaComplexOrder()
-                                {
-                                    PizzaSauce = new PizzaSauceOrder[]
-                                    {
-                                        new PizzaSauceOrder()
-                                        {
-                                            Id = 7
-                                        }
-                                    },
-                                    BaseOrder = new PizzaBaseOrder[]
-                                    {
-                                        new PizzaBaseOrder()
-                                        {
-                                            Id = 0
-                                        },
-                                        new PizzaBaseOrder()
-                                        {
-                                            Id = 2
-                                        }
-                                    },
-                                    SpiceOrder = new PizzaSpiceOrder[]
-                                    {
-                                        new PizzaSpiceOrder()
-                                        {
-                                            Id = 3
-                                        }
-                                    },
-                                    ToppingOrder = new PizzaToppingOrder[]
-                                    {
-                                        new PizzaToppingOrder()
-                                        {
-                                            Id = 2
-                                        }
-                                    }
-                                },
-                                SecondComplex = null
-                            }
-                        }
+                        Order = order,
+                        Name = "Pepperoni Pizza order",
+                        Description = ""
                     });
                 }
                 #endregion
