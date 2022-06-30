@@ -26,7 +26,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaBase()
                         {
-                            Id = 0,
                             Name = "Mozzarella",
                             Description = "",
                             Available = true,
@@ -35,7 +34,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaBase()
                         {
-                            Id = 1,
                             Name = "Parmesan",
                             Description = "",
                             Available = true,
@@ -44,7 +42,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaBase()
                         {
-                            Id = 2,
                             Name = "Cheddar",
                             Description = "",
                             Available = true,
@@ -53,7 +50,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaBase()
                         {
-                            Id = 3,
                             Name = "Sweeden Emmental",
                             Description = "",
                             Available = true,
@@ -69,7 +65,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaDough()
                         {
-                            Id = 0,
                             Name = "Wheat",
                             Description = "",
                             Available = true,
@@ -78,7 +73,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaDough()
                         {
-                            Id = 1,
                             Name = "Puff paste",
                             Description = "",
                             Available = true,
@@ -87,7 +81,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaDough()
                         {
-                            Id = 2,
                             Name = "Yeast free",
                             Description = "",
                             Available = true,
@@ -103,7 +96,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaProcess()
                         {
-                            Id = 0,
                             Name = "Cooking",
                             Description = "",
                             Available = true,
@@ -112,7 +104,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaProcess()
                         {
-                            Id = 1,
                             Name = "Slicing",
                             Description = "",
                             Available = true,
@@ -128,7 +119,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaSauce()
                         {
-                            Id = 0,
                             Name = "Ketchup",
                             Description = "",
                             Available = true,
@@ -137,7 +127,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 1,
                             Name = "Mayonneise",
                             Description = "",
                             Available = true,
@@ -146,7 +135,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 2,
                             Name = "Ketchunneise",
                             Description = "Mixed Ketchup and mayonneise!",
                             Available = true,
@@ -155,7 +143,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 3,
                             Name = "Hunters",
                             Description = "",
                             Available = true,
@@ -164,7 +151,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 4,
                             Name = "Creamy",
                             Description = "",
                             Available = true,
@@ -173,7 +159,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 5,
                             Name = "Garlic",
                             Description = "",
                             Available = true,
@@ -182,7 +167,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 6,
                             Name = "Creamy-Garlic",
                             Description = "",
                             Available = true,
@@ -191,7 +175,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSauce()
                         {
-                            Id = 7,
                             Name = "Tomato pasta",
                             Description = "",
                             Available = true,
@@ -207,7 +190,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaSize()
                         {
-                            Id = 0,
                             Name = "Minimal",
                             Description = "18 cm",
                             Available = true,
@@ -216,7 +198,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSize()
                         {
-                            Id = 1,
                             Name = "Normal",
                             Description = "26",
                             Available = true,
@@ -225,7 +206,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSize()
                         {
-                            Id = 2,
                             Name = "Big",
                             Description = "36",
                             Available = true,
@@ -234,7 +214,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSize()
                         {
-                            Id = 3,
                             Name = "Huge",
                             Description = "60",
                             Available = true,
@@ -250,7 +229,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaSpice()
                         {
-                            Id = 0,
                             Name = "Thyme",
                             Description = "",
                             Available = true,
@@ -259,7 +237,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSpice()
                         {
-                            Id = 1,
                             Name = "Rosemary",
                             Description = "",
                             Available = true,
@@ -268,7 +245,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSpice()
                         {
-                            Id = 2,
                             Name = "Coriander",
                             Description = "",
                             Available = true,
@@ -277,7 +253,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaSpice()
                         {
-                            Id = 3,
                             Name = "Italian",
                             Description = "",
                             Available = true,
@@ -293,7 +268,6 @@ namespace PigeonPizza.Data
                     {
                         new PizzaTopping()
                         {
-                            Id = 0,
                             Name = "Mushrooms",
                             Description = "",
                             Available = true,
@@ -302,7 +276,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 1,
                             Name = "Beacon",
                             Description = "",
                             Available = true,
@@ -311,7 +284,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 2,
                             Name = "Pepperoni",
                             Description = "",
                             Available = true,
@@ -320,7 +292,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 3,
                             Name = "Sausages",
                             Description = "",
                             Available = true,
@@ -329,7 +300,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 4,
                             Name = "Bell Pepper",
                             Description = "",
                             Available = true,
@@ -338,7 +308,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 5,
                             Name = "Tomatoes",
                             Description = "",
                             Available = true,
@@ -347,7 +316,6 @@ namespace PigeonPizza.Data
                         },
                         new PizzaTopping()
                         {
-                            Id = 6,
                             Name = "Olives",
                             Description = "",
                             Available = true,
@@ -383,13 +351,13 @@ namespace PigeonPizza.Data
 
                     var order1 = new PizzaBaseOrder()
                     {
-                        Order = context.PizzaBases.First(x => x.Id == 0),
+                        Order = context.PizzaBases.FirstOrDefault(x => x.Id == 0),
                         Amount = 1.0
                     };
                     context.PizzaBaseOrders.Add(order1);
                     var order2 = new PizzaBaseOrder()
                     {
-                        Order = context.PizzaBases.First(x => x.Id == 2),
+                        Order = context.PizzaBases.FirstOrDefault(x => x.Id == 2),
                         Amount = 1.0
                     };
                     context.PizzaBaseOrders.Add(order2);
@@ -404,7 +372,7 @@ namespace PigeonPizza.Data
                 {
                     var order1 = new PizzaSauceOrder()
                     {
-                        Order = context.PizzaSauces.First(x => x.Id == 7),
+                        Order = context.PizzaSauces.FirstOrDefault(x => x.Id == 7),
                         Amount = 1.0
                     };
                     context.PizzaSauceOrders.Add(order1);
@@ -418,7 +386,7 @@ namespace PigeonPizza.Data
                 {
                     var order1 = new PizzaToppingOrder()
                     {
-                        Order = context.PizzaToppings.First(x => x.Id == 2),
+                        Order = context.PizzaToppings.FirstOrDefault(x => x.Id == 2),
                         Amount = 1.0
                     };
                     context.PizzaToppingOrders.Add(order1);
@@ -439,12 +407,12 @@ namespace PigeonPizza.Data
                 {
                     new PizzaProcessOrder
                     {
-                        Order = context.PizzaProcesses.First(x => x.Id == 0),
+                        Order = context.PizzaProcesses.FirstOrDefault(x => x.Id == 0),
                         Amount = 1
                     },
                     new PizzaProcessOrder
                     {
-                        Order = context.PizzaProcesses.First(x => x.Id == 2),
+                        Order = context.PizzaProcesses.FirstOrDefault(x => x.Id == 2),
                         Amount = 3
                     }
                 };
@@ -460,8 +428,8 @@ namespace PigeonPizza.Data
                 {
                     Name = "Pepperoni pizza",
                     Comment = "Tomato-sauce, 2-cheese-base, pepperoni topping.",
-                    Size = context.PizzaSizes.First(x => x.Id == 2),
-                    Dough = context.PizzaDoughs.First(x => x.Id == 0),
+                    Size = context.PizzaSizes.FirstOrDefault(x => x.Id == 2),
+                    Dough = context.PizzaDoughs.FirstOrDefault(x => x.Id == 0),
                     PrimeComplex = PepperoniOrder,
                     SecondComplex = null,
                     Processing = processing
