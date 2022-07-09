@@ -14,6 +14,7 @@ using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
 using PigeonPizza.Data;
+using PigeonPizza.Services;
 
 namespace PigeonPizza
 {
@@ -34,6 +35,11 @@ namespace PigeonPizza
             var version = Configuration["Meta:Version"];
             var appname = Configuration["Meta:Name"];
             services.AddControllers();
+
+            #region custom services
+            services.AddScoped<ComplexModelUploadingService>();
+            #endregion
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc(version, new OpenApiInfo { Title = appname, Version = version });
