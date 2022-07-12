@@ -340,7 +340,7 @@ namespace PigeonPizza.Data
                 // Ingridients orders making
                 PizzaComplexOrder PepperoniOrder = new PizzaComplexOrder()
                 {
-                    PizzaSauce = new List<PizzaSauceOrder>(),
+                    SauceOrder = new List<PizzaSauceOrder>(),
                     BaseOrder = new List<PizzaBaseOrder>(),
                     SpiceOrder = null,
                     ToppingOrder = new List<PizzaToppingOrder>(),
@@ -379,7 +379,7 @@ namespace PigeonPizza.Data
 
                     context.SaveChanges();
 
-                    PepperoniOrder.PizzaSauce.Add(order1);
+                    PepperoniOrder.SauceOrder.Add(order1);
                 }
 
                 if (!context.PizzaToppingOrders.Any())

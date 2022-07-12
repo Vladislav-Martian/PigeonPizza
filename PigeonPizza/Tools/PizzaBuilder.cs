@@ -124,11 +124,11 @@ namespace PigeonPizza.Tools
         #region Building complex (Sauce, Base, Topping, Spice)
         public PizzaBuilder AddSauce(PizzaSauce element, double amount)
         {
-            if (ComplexToBuild.PizzaSauce == null)
+            if (ComplexToBuild.SauceOrder == null)
             {
-                ComplexToBuild.PizzaSauce = new List<PizzaSauceOrder>();
+                ComplexToBuild.SauceOrder = new List<PizzaSauceOrder>();
             }
-            ComplexToBuild.PizzaSauce.Add(new PizzaSauceOrder()
+            ComplexToBuild.SauceOrder.Add(new PizzaSauceOrder()
             {
                 Order = element,
                 Amount = amount

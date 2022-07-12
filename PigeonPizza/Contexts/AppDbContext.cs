@@ -22,7 +22,7 @@ namespace PigeonPizza.Contexts
         public DbSet<PizzaComplexOrder> PizzaComplexOrders { get; set; }
         public DbSet<PizzaOrder> PizzaOrders { get; set; }
         public DbSet<PizzaSauceOrder> PizzaSauceOrders { get; set; }
-        public DbSet<PizzaSauceOrder> PizzaSpiceOrders { get; set; }
+        public DbSet<PizzaSpiceOrder> PizzaSpiceOrders { get; set; }
         public DbSet<PizzaToppingOrder> PizzaToppingOrders { get; set; }
         public DbSet<PizzaProcessOrder> PizzaProcessOrders { get; set; }
         #endregion
