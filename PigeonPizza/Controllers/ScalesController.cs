@@ -6,53 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Contexts;
-using PigeonPizza.Models.Primitive;
+using PigeonPizza.Models.Basics;
 
 namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PizzaSizesController : ControllerBase
+    public class ScalesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public PizzaSizesController(AppDbContext context)
+        public ScalesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/PizzaSizes
+        // GET: api/Scales
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaSize>>> GetPizzaSizes()
+        public async Task<ActionResult<IEnumerable<PizzaBasicsScale>>> GetScales()
         {
-            return await _context.PizzaSizes.ToListAsync();
+            return await _context.Scales.ToListAsync();
         }
 
-        // GET: api/PizzaSizes/5
+        // GET: api/Scales/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaSize>> GetPizzaSize(int id)
+        public async Task<ActionResult<PizzaBasicsScale>> GetPizzaBasicsScale(int id)
         {
-            var pizzaSize = await _context.PizzaSizes.FindAsync(id);
+            var pizzaBasicsScale = await _context.Scales.FindAsync(id);
 
-            if (pizzaSize == null)
+            if (pizzaBasicsScale == null)
             {
                 return NotFound();
             }
 
-            return pizzaSize;
+            return pizzaBasicsScale;
         }
 
-        // PUT: api/PizzaSizes/5
+        // PUT: api/Scales/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaSize(int id, PizzaSize pizzaSize)
+        public async Task<IActionResult> PutPizzaBasicsScale(int id, PizzaBasicsScale pizzaBasicsScale)
         {
-            if (id != pizzaSize.Id)
+            if (id != pizzaBasicsScale.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaSize).State = EntityState.Modified;
+            _context.Entry(pizzaBasicsScale).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaSizeExists(id))
+                if (!PizzaBasicsScaleExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/PizzaSizes
+        // POST: api/Scales
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaSize>> PostPizzaSize(PizzaSize pizzaSize)
+        public async Task<ActionResult<PizzaBasicsScale>> PostPizzaBasicsScale(PizzaBasicsScale pizzaBasicsScale)
         {
-            _context.PizzaSizes.Add(pizzaSize);
+            _context.Scales.Add(pizzaBasicsScale);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaSize), new { id = pizzaSize.Id }, pizzaSize);
+            return CreatedAtAction(nameof(GetPizzaBasicsScale), new { id = pizzaBasicsScale.Id }, pizzaBasicsScale);
         }
 
-        // DELETE: api/PizzaSizes/5
+        // DELETE: api/Scales/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaSize(int id)
+        public async Task<IActionResult> DeletePizzaBasicsScale(int id)
         {
-            var pizzaSize = await _context.PizzaSizes.FindAsync(id);
-            if (pizzaSize == null)
+            var pizzaBasicsScale = await _context.Scales.FindAsync(id);
+            if (pizzaBasicsScale == null)
             {
                 return NotFound();
             }
 
-            _context.PizzaSizes.Remove(pizzaSize);
+            _context.Scales.Remove(pizzaBasicsScale);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaSizeExists(int id)
+        private bool PizzaBasicsScaleExists(int id)
         {
-            return _context.PizzaSizes.Any(e => e.Id == id);
+            return _context.Scales.Any(e => e.Id == id);
         }
     }
 }

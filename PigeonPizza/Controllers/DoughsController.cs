@@ -6,53 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Contexts;
-using PigeonPizza.Models.Primitive;
+using PigeonPizza.Models.Basics;
 
 namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PizzaSaucesController : ControllerBase
+    public class DoughsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public PizzaSaucesController(AppDbContext context)
+        public DoughsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/PizzaSauces
+        // GET: api/Doughs
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaSauce>>> GetPizzaSauces()
+        public async Task<ActionResult<IEnumerable<PizzaBasicsDough>>> GetDoughs()
         {
-            return await _context.PizzaSauces.ToListAsync();
+            return await _context.Doughs.ToListAsync();
         }
 
-        // GET: api/PizzaSauces/5
+        // GET: api/Doughs/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaSauce>> GetPizzaSauce(int id)
+        public async Task<ActionResult<PizzaBasicsDough>> GetPizzaBasicsDough(int id)
         {
-            var pizzaSauce = await _context.PizzaSauces.FindAsync(id);
+            var pizzaBasicsDough = await _context.Doughs.FindAsync(id);
 
-            if (pizzaSauce == null)
+            if (pizzaBasicsDough == null)
             {
                 return NotFound();
             }
 
-            return pizzaSauce;
+            return pizzaBasicsDough;
         }
 
-        // PUT: api/PizzaSauces/5
+        // PUT: api/Doughs/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaSauce(int id, PizzaSauce pizzaSauce)
+        public async Task<IActionResult> PutPizzaBasicsDough(int id, PizzaBasicsDough pizzaBasicsDough)
         {
-            if (id != pizzaSauce.Id)
+            if (id != pizzaBasicsDough.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaSauce).State = EntityState.Modified;
+            _context.Entry(pizzaBasicsDough).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaSauceExists(id))
+                if (!PizzaBasicsDoughExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/PizzaSauces
+        // POST: api/Doughs
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaSauce>> PostPizzaSauce(PizzaSauce pizzaSauce)
+        public async Task<ActionResult<PizzaBasicsDough>> PostPizzaBasicsDough(PizzaBasicsDough pizzaBasicsDough)
         {
-            _context.PizzaSauces.Add(pizzaSauce);
+            _context.Doughs.Add(pizzaBasicsDough);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaSauce), new { id = pizzaSauce.Id }, pizzaSauce);
+            return CreatedAtAction(nameof(GetPizzaBasicsDough), new { id = pizzaBasicsDough.Id }, pizzaBasicsDough);
         }
 
-        // DELETE: api/PizzaSauces/5
+        // DELETE: api/Doughs/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaSauce(int id)
+        public async Task<IActionResult> DeletePizzaBasicsDough(int id)
         {
-            var pizzaSauce = await _context.PizzaSauces.FindAsync(id);
-            if (pizzaSauce == null)
+            var pizzaBasicsDough = await _context.Doughs.FindAsync(id);
+            if (pizzaBasicsDough == null)
             {
                 return NotFound();
             }
 
-            _context.PizzaSauces.Remove(pizzaSauce);
+            _context.Doughs.Remove(pizzaBasicsDough);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaSauceExists(int id)
+        private bool PizzaBasicsDoughExists(int id)
         {
-            return _context.PizzaSauces.Any(e => e.Id == id);
+            return _context.Doughs.Any(e => e.Id == id);
         }
     }
 }

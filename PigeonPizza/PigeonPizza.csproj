@@ -17,7 +17,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\Other\" />
+    <Folder Include="Models\Complex\" />
+    <Folder Include="Models\Control\" />
+    <Folder Include="Services\" />
   </ItemGroup>
 
 </Project>

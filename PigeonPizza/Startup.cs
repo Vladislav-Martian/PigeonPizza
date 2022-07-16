@@ -14,7 +14,6 @@ using Microsoft.EntityFrameworkCore.InMemory;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Routing;
 using PigeonPizza.Data;
-using PigeonPizza.Services;
 
 namespace PigeonPizza
 {
@@ -37,7 +36,7 @@ namespace PigeonPizza
             services.AddControllers();
 
             #region custom services
-            services.AddScoped<ComplexModelUploadingService>();
+            
             #endregion
 
             services.AddSwaggerGen(c =>

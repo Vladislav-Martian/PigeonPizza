@@ -6,53 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Contexts;
-using PigeonPizza.Models.Primitive;
+using PigeonPizza.Models.Basics;
 
 namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PizzaBasesController : ControllerBase
+    public class WorksController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public PizzaBasesController(AppDbContext context)
+        public WorksController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/PizzaBases
+        // GET: api/Works
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaBase>>> GetPizzaBases()
+        public async Task<ActionResult<IEnumerable<PizzaBasicsWork>>> GetWorks()
         {
-            return await _context.PizzaBases.ToListAsync();
+            return await _context.Works.ToListAsync();
         }
 
-        // GET: api/PizzaBases/5
+        // GET: api/Works/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaBase>> GetPizzaBase(int id)
+        public async Task<ActionResult<PizzaBasicsWork>> GetPizzaBasicsWork(int id)
         {
-            var pizzaBase = await _context.PizzaBases.FindAsync(id);
+            var pizzaBasicsWork = await _context.Works.FindAsync(id);
 
-            if (pizzaBase == null)
+            if (pizzaBasicsWork == null)
             {
                 return NotFound();
             }
 
-            return pizzaBase;
+            return pizzaBasicsWork;
         }
 
-        // PUT: api/PizzaBases/5
+        // PUT: api/Works/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaBase(int id, PizzaBase pizzaBase)
+        public async Task<IActionResult> PutPizzaBasicsWork(int id, PizzaBasicsWork pizzaBasicsWork)
         {
-            if (id != pizzaBase.Id)
+            if (id != pizzaBasicsWork.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaBase).State = EntityState.Modified;
+            _context.Entry(pizzaBasicsWork).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaBaseExists(id))
+                if (!PizzaBasicsWorkExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/PizzaBases
+        // POST: api/Works
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaBase>> PostPizzaBase(PizzaBase pizzaBase)
+        public async Task<ActionResult<PizzaBasicsWork>> PostPizzaBasicsWork(PizzaBasicsWork pizzaBasicsWork)
         {
-            _context.PizzaBases.Add(pizzaBase);
+            _context.Works.Add(pizzaBasicsWork);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaBase), new { id = pizzaBase.Id }, pizzaBase);
+            return CreatedAtAction(nameof(GetPizzaBasicsWork), new { id = pizzaBasicsWork.Id }, pizzaBasicsWork);
         }
 
-        // DELETE: api/PizzaBases/5
+        // DELETE: api/Works/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaBase(int id)
+        public async Task<IActionResult> DeletePizzaBasicsWork(int id)
         {
-            var pizzaBase = await _context.PizzaBases.FindAsync(id);
-            if (pizzaBase == null)
+            var pizzaBasicsWork = await _context.Works.FindAsync(id);
+            if (pizzaBasicsWork == null)
             {
                 return NotFound();
             }
 
-            _context.PizzaBases.Remove(pizzaBase);
+            _context.Works.Remove(pizzaBasicsWork);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaBaseExists(int id)
+        private bool PizzaBasicsWorkExists(int id)
         {
-            return _context.PizzaBases.Any(e => e.Id == id);
+            return _context.Works.Any(e => e.Id == id);
         }
     }
 }
