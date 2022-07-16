@@ -1,5 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using PigeonPizza.Models.Complex;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace PigeonPizza.Models.Basics
@@ -42,7 +44,8 @@ namespace PigeonPizza.Models.Basics
         #endregion
 
         #region Navigation
-
+        public ICollection<PizzaCustomRecipe> CustomRecipes { get; set; } = new List<PizzaCustomRecipe>();
+        public ICollection<PizzaOfficialRecipe> OfficialRecipes { get; set; } = new List<PizzaOfficialRecipe>();
         #endregion
     }
 }

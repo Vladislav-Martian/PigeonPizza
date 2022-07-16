@@ -6,6 +6,7 @@ using PigeonPizza.Models.Basics;
 //using PigeonPizza.Models.Controls;
 using System.Linq;
 using System.Collections.Generic;
+using PigeonPizza.Models.Complex;
 
 namespace PigeonPizza.Data
 {
@@ -80,7 +81,19 @@ namespace PigeonPizza.Data
             {
                 var context = scope.ServiceProvider.GetService<AppDbContext>();
                 context.Database.EnsureCreated();
-                
+
+                var elm = new PizzaOfficialRecipe.Builder()
+                    .NameAndDescription("Small Pepperoni", "Pizza with tomato-sauce, cheese, pepperoni")
+                    .SetDough(context.Doughs.FirstOrDefault(x => x.Name == "White"))
+                    .SetScale(context.Scales.FirstOrDefault(x => x.Name == "Small"))
+                    .AddCover(context.Covers.FirstOrDefault(x => x.Name == "Tomato Sauce"), 1)
+                    .AddCover(context.Covers.FirstOrDefault(x => x.Name == "Cheese"), 1)
+                    .AddTopping(context.Toppings.FirstOrDefault(x => x.Name == "Pepperoni"), 2)
+                    .AddWork(context.Works.FirstOrDefault(x => x.Name == "Bake"), 1)
+                    .AddWork(context.Works.FirstOrDefault(x => x.Name == "Cut"), 3)
+                    .Build();
+                context.OfficialRecipes.Add(elm);
+
                 context.SaveChanges();
             }
         }

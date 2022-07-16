@@ -33,10 +33,12 @@ namespace PigeonPizza
         {
             var version = Configuration["Meta:Version"];
             var appname = Configuration["Meta:Name"];
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+                options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+            );
 
             #region custom services
-            
+
             #endregion
 
             services.AddSwaggerGen(c =>
@@ -56,13 +58,14 @@ namespace PigeonPizza
             if (Env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseSwagger();
-                // Example endpoint: «/swagger/v1.0.0/swagger.json»
-                app.UseSwaggerUI(c => c.SwaggerEndpoint(GetSwaggerEndpoint(), string.Concat(
-                    Configuration["Meta:Name"].ToString(),
-                    " ",
-                    Configuration["Meta:Version"].ToString()))); // Example: «PigeonPizza v1.0.0»
             }
+
+            app.UseSwagger();
+            // Example endpoint: «/swagger/v1.0.0/swagger.json»
+            app.UseSwaggerUI(c => c.SwaggerEndpoint(GetSwaggerEndpoint(), string.Concat(
+                Configuration["Meta:Name"].ToString(),
+                " ",
+                Configuration["Meta:Version"].ToString()))); // Example: «PigeonPizza v1.0.0»
 
             app.UseHttpsRedirection();
 

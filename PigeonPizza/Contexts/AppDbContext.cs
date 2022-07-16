@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Models.Basics;
+using PigeonPizza.Models.Complex;
 
 namespace PigeonPizza.Contexts
 {
@@ -11,6 +12,8 @@ namespace PigeonPizza.Contexts
         public DbSet<PizzaBasicsDough> Doughs { get; set; }
         public DbSet<PizzaBasicsWork> Works { get; set; }
         public DbSet<PizzaBasicsScale> Scales { get; set; }
+        public DbSet<PizzaOfficialRecipe> OfficialRecipes { get; set; }
+        public DbSet<PizzaCustomRecipe> CustomRecipes { get; set; }
         #endregion
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
