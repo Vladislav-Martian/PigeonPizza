@@ -6,53 +6,53 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Contexts;
-using PigeonPizza.Models.Basics;
+using PigeonPizza.Models.Complex;
 
 namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class CoversController : ControllerBase
+    public class BasicsTasksController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public CoversController(AppDbContext context)
+        public BasicsTasksController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Covers
+        // GET: api/BasicsTasks
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaBasicsCover>>> GetCovers()
+        public async Task<ActionResult<IEnumerable<BasicsTask>>> GetBasicsTasks()
         {
-            return await _context.Covers.ToListAsync();
+            return await _context.BasicsTasks.ToListAsync();
         }
 
-        // GET: api/Covers/5
+        // GET: api/BasicsTasks/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaBasicsCover>> GetPizzaBasicsCover(int id)
+        public async Task<ActionResult<BasicsTask>> GetBasicsTask(int id)
         {
-            var pizzaBasicsCover = await _context.Covers.FindAsync(id);
+            var basicsTask = await _context.BasicsTasks.FindAsync(id);
 
-            if (pizzaBasicsCover == null)
+            if (basicsTask == null)
             {
                 return NotFound();
             }
 
-            return pizzaBasicsCover;
+            return basicsTask;
         }
 
-        // PUT: api/Covers/5
+        // PUT: api/BasicsTasks/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaBasicsCover(int id, PizzaBasicsCover pizzaBasicsCover)
+        public async Task<IActionResult> PutBasicsTask(int id, BasicsTask basicsTask)
         {
-            if (id != pizzaBasicsCover.Id)
+            if (id != basicsTask.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaBasicsCover).State = EntityState.Modified;
+            _context.Entry(basicsTask).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaBasicsCoverExists(id))
+                if (!BasicsTaskExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/Covers
+        // POST: api/BasicsTasks
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaBasicsCover>> PostPizzaBasicsCover(PizzaBasicsCover pizzaBasicsCover)
+        public async Task<ActionResult<BasicsTask>> PostBasicsTask(BasicsTask basicsTask)
         {
-            _context.Covers.Add(pizzaBasicsCover);
+            _context.BasicsTasks.Add(basicsTask);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaBasicsCover), new { id = pizzaBasicsCover.Id }, pizzaBasicsCover);
+            return CreatedAtAction(nameof(GetBasicsTask), new { id = basicsTask.Id }, basicsTask);
         }
 
-        // DELETE: api/Covers/5
+        // DELETE: api/BasicsTasks/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaBasicsCover(int id)
+        public async Task<IActionResult> DeleteBasicsTask(int id)
         {
-            var pizzaBasicsCover = await _context.Covers.FindAsync(id);
-            if (pizzaBasicsCover == null)
+            var basicsTask = await _context.BasicsTasks.FindAsync(id);
+            if (basicsTask == null)
             {
                 return NotFound();
             }
 
-            _context.Covers.Remove(pizzaBasicsCover);
+            _context.BasicsTasks.Remove(basicsTask);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaBasicsCoverExists(int id)
+        private bool BasicsTaskExists(int id)
         {
-            return _context.Covers.Any(e => e.Id == id);
+            return _context.BasicsTasks.Any(e => e.Id == id);
         }
     }
 }

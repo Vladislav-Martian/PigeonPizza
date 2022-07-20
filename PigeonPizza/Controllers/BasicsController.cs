@@ -12,47 +12,47 @@ namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ScalesController : ControllerBase
+    public class BasicsController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public ScalesController(AppDbContext context)
+        public BasicsController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Scales
+        // GET: api/Basics
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaScale>>> GetScales()
+        public async Task<ActionResult<IEnumerable<PizzaBasic>>> GetBasics()
         {
-            return await _context.Scales.ToListAsync();
+            return await _context.Basics.ToListAsync();
         }
 
-        // GET: api/Scales/5
+        // GET: api/Basics/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaScale>> GetPizzaBasicsScale(int id)
+        public async Task<ActionResult<PizzaBasic>> GetPizzaBasic(int id)
         {
-            var pizzaBasicsScale = await _context.Scales.FindAsync(id);
+            var pizzaBasic = await _context.Basics.FindAsync(id);
 
-            if (pizzaBasicsScale == null)
+            if (pizzaBasic == null)
             {
                 return NotFound();
             }
 
-            return pizzaBasicsScale;
+            return pizzaBasic;
         }
 
-        // PUT: api/Scales/5
+        // PUT: api/Basics/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaBasicsScale(int id, PizzaScale pizzaBasicsScale)
+        public async Task<IActionResult> PutPizzaBasic(int id, PizzaBasic pizzaBasic)
         {
-            if (id != pizzaBasicsScale.Id)
+            if (id != pizzaBasic.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaBasicsScale).State = EntityState.Modified;
+            _context.Entry(pizzaBasic).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaBasicsScaleExists(id))
+                if (!PizzaBasicExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/Scales
+        // POST: api/Basics
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaScale>> PostPizzaBasicsScale(PizzaScale pizzaBasicsScale)
+        public async Task<ActionResult<PizzaBasic>> PostPizzaBasic(PizzaBasic pizzaBasic)
         {
-            _context.Scales.Add(pizzaBasicsScale);
+            _context.Basics.Add(pizzaBasic);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaBasicsScale), new { id = pizzaBasicsScale.Id }, pizzaBasicsScale);
+            return CreatedAtAction(nameof(GetPizzaBasic), new { id = pizzaBasic.Id }, pizzaBasic);
         }
 
-        // DELETE: api/Scales/5
+        // DELETE: api/Basics/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaBasicsScale(int id)
+        public async Task<IActionResult> DeletePizzaBasic(int id)
         {
-            var pizzaBasicsScale = await _context.Scales.FindAsync(id);
-            if (pizzaBasicsScale == null)
+            var pizzaBasic = await _context.Basics.FindAsync(id);
+            if (pizzaBasic == null)
             {
                 return NotFound();
             }
 
-            _context.Scales.Remove(pizzaBasicsScale);
+            _context.Basics.Remove(pizzaBasic);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaBasicsScaleExists(int id)
+        private bool PizzaBasicExists(int id)
         {
-            return _context.Scales.Any(e => e.Id == id);
+            return _context.Basics.Any(e => e.Id == id);
         }
     }
 }

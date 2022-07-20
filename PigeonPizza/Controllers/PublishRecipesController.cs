@@ -12,47 +12,47 @@ namespace PigeonPizza.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class WorksController : ControllerBase
+    public class PublishRecipesController : ControllerBase
     {
         private readonly AppDbContext _context;
 
-        public WorksController(AppDbContext context)
+        public PublishRecipesController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/Works
+        // GET: api/PublishRecipes
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<PizzaBasicsWork>>> GetWorks()
+        public async Task<ActionResult<IEnumerable<PublishRecipe>>> GetPublishReceipes()
         {
-            return await _context.Works.ToListAsync();
+            return await _context.PublishReceipes.ToListAsync();
         }
 
-        // GET: api/Works/5
+        // GET: api/PublishRecipes/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<PizzaBasicsWork>> GetPizzaBasicsWork(int id)
+        public async Task<ActionResult<PublishRecipe>> GetPublishRecipe(int id)
         {
-            var pizzaBasicsWork = await _context.Works.FindAsync(id);
+            var publishRecipe = await _context.PublishReceipes.FindAsync(id);
 
-            if (pizzaBasicsWork == null)
+            if (publishRecipe == null)
             {
                 return NotFound();
             }
 
-            return pizzaBasicsWork;
+            return publishRecipe;
         }
 
-        // PUT: api/Works/5
+        // PUT: api/PublishRecipes/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutPizzaBasicsWork(int id, PizzaBasicsWork pizzaBasicsWork)
+        public async Task<IActionResult> PutPublishRecipe(int id, PublishRecipe publishRecipe)
         {
-            if (id != pizzaBasicsWork.Id)
+            if (id != publishRecipe.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(pizzaBasicsWork).State = EntityState.Modified;
+            _context.Entry(publishRecipe).State = EntityState.Modified;
 
             try
             {
@@ -60,7 +60,7 @@ namespace PigeonPizza.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PizzaBasicsWorkExists(id))
+                if (!PublishRecipeExists(id))
                 {
                     return NotFound();
                 }
@@ -73,36 +73,36 @@ namespace PigeonPizza.Controllers
             return NoContent();
         }
 
-        // POST: api/Works
+        // POST: api/PublishRecipes
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<PizzaBasicsWork>> PostPizzaBasicsWork(PizzaBasicsWork pizzaBasicsWork)
+        public async Task<ActionResult<PublishRecipe>> PostPublishRecipe(PublishRecipe publishRecipe)
         {
-            _context.Works.Add(pizzaBasicsWork);
+            _context.PublishReceipes.Add(publishRecipe);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetPizzaBasicsWork), new { id = pizzaBasicsWork.Id }, pizzaBasicsWork);
+            return CreatedAtAction(nameof(GetPublishRecipe), new { id = publishRecipe.Id }, publishRecipe);
         }
 
-        // DELETE: api/Works/5
+        // DELETE: api/PublishRecipes/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePizzaBasicsWork(int id)
+        public async Task<IActionResult> DeletePublishRecipe(int id)
         {
-            var pizzaBasicsWork = await _context.Works.FindAsync(id);
-            if (pizzaBasicsWork == null)
+            var publishRecipe = await _context.PublishReceipes.FindAsync(id);
+            if (publishRecipe == null)
             {
                 return NotFound();
             }
 
-            _context.Works.Remove(pizzaBasicsWork);
+            _context.PublishReceipes.Remove(publishRecipe);
             await _context.SaveChangesAsync();
 
             return NoContent();
         }
 
-        private bool PizzaBasicsWorkExists(int id)
+        private bool PublishRecipeExists(int id)
         {
-            return _context.Works.Any(e => e.Id == id);
+            return _context.PublishReceipes.Any(e => e.Id == id);
         }
     }
 }

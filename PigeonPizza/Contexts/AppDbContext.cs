@@ -7,13 +7,12 @@ namespace PigeonPizza.Contexts
     public class AppDbContext: DbContext
     {
         #region Tables
-        public DbSet<PizzaBasicsCover> Covers { get; set; }
-        public DbSet<PizzaBasicsTopping> Toppings { get; set; }
-        public DbSet<PizzaBasicsDough> Doughs { get; set; }
-        public DbSet<PizzaBasicsWork> Works { get; set; }
-        public DbSet<PizzaBasicsScale> Scales { get; set; }
-        public DbSet<PizzaOfficialRecipe> OfficialRecipes { get; set; }
-        public DbSet<PizzaCustomRecipe> CustomRecipes { get; set; }
+        public DbSet<PizzaBasic> Basics { get; set; }
+        public DbSet<PizzaDough> Doughs { get; set; }
+        public DbSet<PizzaScale> Scales { get; set; }
+        public DbSet<BasicsTask> BasicsTasks { get; set; }
+        public DbSet<PublishRecipe> PublishReceipes { get; set; }
+        public DbSet<PizzaRecipe> PizzaRecipes { get; set; }
         #endregion
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
@@ -23,19 +22,16 @@ namespace PigeonPizza.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<PizzaBasicsCover>()
+            modelBuilder.Entity<PizzaDough>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
-            modelBuilder.Entity<PizzaBasicsTopping>()
+            modelBuilder.Entity<PizzaBasic>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
-            modelBuilder.Entity<PizzaBasicsDough>()
+            modelBuilder.Entity<PizzaScale>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
-            modelBuilder.Entity<PizzaBasicsWork>()
-                .HasIndex(u => u.Name)
-                .IsUnique();
-            modelBuilder.Entity<PizzaBasicsScale>()
+            modelBuilder.Entity<PublishRecipe>()
                 .HasIndex(u => u.Name)
                 .IsUnique();
         }

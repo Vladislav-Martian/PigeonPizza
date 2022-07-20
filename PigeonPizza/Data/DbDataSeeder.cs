@@ -2,11 +2,10 @@
 using Microsoft.Extensions.DependencyInjection;
 using PigeonPizza.Contexts;
 using PigeonPizza.Models.Basics;
-//using PigeonPizza.Models.Complex;
-//using PigeonPizza.Models.Controls;
 using System.Linq;
 using System.Collections.Generic;
-using PigeonPizza.Models.Complex;
+//using PigeonPizza.Models.Complex;
+//using PigeonPizza.Models.Controls;
 
 namespace PigeonPizza.Data
 {
@@ -23,51 +22,55 @@ namespace PigeonPizza.Data
                 // Scales
                 if (!context.Scales.Any())
                 {
-                    context.Scales.AddRange(new PizzaBasicsScale[]
+                    context.Scales.AddRange(new PizzaScale[]
                     {
-                        new PizzaBasicsScale("Small", 16M),
-                        new PizzaBasicsScale("Normal", 24M),
-                        new PizzaBasicsScale("Large", 36M),
+                        new PizzaScale("Small", 16M),
+                        new PizzaScale("Normal", 24M),
+                        new PizzaScale("Large", 36M),
                     });
                 }
                 // Doughs
                 if (!context.Doughs.Any())
                 {
-                    context.Doughs.AddRange(new PizzaBasicsDough[]
+                    context.Doughs.AddRange(new PizzaDough[]
                     {
-                        new PizzaBasicsDough("White", 3M),
-                        new PizzaBasicsDough("Wheat", 4M),
+                        new PizzaDough("White", 45M),
+                        new PizzaDough("Wheat", 60M),
                     });
                 }
-                // Works
-                if (!context.Works.Any())
+                // Other
+                if (!context.Basics.Any())
                 {
-                    context.Works.AddRange(new PizzaBasicsWork[]
+                    context.Basics.AddRange(new PizzaBasic[]
                     {
-                        new PizzaBasicsWork("Cut", 0.1M),
-                        new PizzaBasicsWork("Bake", 3M),
-                    });
-                }
-                // Covers
-                if (!context.Covers.Any())
-                {
-                    context.Covers.AddRange(new PizzaBasicsCover[]
-                    {
-                        new PizzaBasicsCover("Tomato Sauce", 1.1M),
-                        new PizzaBasicsCover("Ketchup", 1.3M),
-                        new PizzaBasicsCover("Mayotchup", 1.5M),
-                        new PizzaBasicsCover("Cheese", 2.4M),
-                    });
-                }
-                // Toppings
-                if (!context.Toppings.Any())
-                {
-                    context.Toppings.AddRange(new PizzaBasicsTopping[]
-                    {
-                        new PizzaBasicsTopping("Pepperoni", 4.0M),
-                        new PizzaBasicsTopping("Sausages", 3.3M),
-                        new PizzaBasicsTopping("Meat", 4.2M),
-                        new PizzaBasicsTopping("Salad", 1.6M),
+                        // Works
+                        new PizzaBasic(PizzaBasicType.Work, "Cut", 0.1M),
+                        new PizzaBasic(PizzaBasicType.Work, "Bake", 3.7M),
+                        // Sauces
+                        new PizzaBasic(PizzaBasicType.Sauce, "Ketchup", 25.6M),
+                        new PizzaBasic(PizzaBasicType.Sauce, "Mayotchup", 35.5M),
+                        new PizzaBasic(PizzaBasicType.Sauce, "Barbecue", 20.4M),
+                        new PizzaBasic(PizzaBasicType.Sauce, "Pesto", 40.0M),
+                        // Bases
+                        new PizzaBasic(PizzaBasicType.Base, "Mozzarella", 80.3M),
+                        new PizzaBasic(PizzaBasicType.Base, "Hard cheese", 60.2M),
+                        new PizzaBasic(PizzaBasicType.Base, "Aged cheeze", 120.1M),
+                        // Toppings meat
+                        new PizzaBasic(PizzaBasicType.Topping, "Pepperoni", 150.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Sausage", 125.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Bacon", 150.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Salami", 140.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Chicken", 110.0M),
+                        // Toppings plants
+                        new PizzaBasic(PizzaBasicType.Topping, "Sweet pepper", 60.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Olives", 70.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Mushrooms", 50.0M),
+                        new PizzaBasic(PizzaBasicType.Topping, "Pineapple", 80.0M),
+                        // Toppings fish
+                        new PizzaBasic(PizzaBasicType.Topping, "Fish", 90.0M),
+                        // Spices
+                        new PizzaBasic(PizzaBasicType.Spice, "Basil", 5.0M),
+                        new PizzaBasic(PizzaBasicType.Spice, "Oregano", 8.0M),
                     });
                 }
                 #endregion
@@ -82,17 +85,7 @@ namespace PigeonPizza.Data
                 var context = scope.ServiceProvider.GetService<AppDbContext>();
                 context.Database.EnsureCreated();
 
-                var elm = new PizzaOfficialRecipe.Builder()
-                    .NameAndDescription("Small Pepperoni", "Pizza with tomato-sauce, cheese, pepperoni")
-                    .SetDough(context.Doughs.FirstOrDefault(x => x.Name == "White"))
-                    .SetScale(context.Scales.FirstOrDefault(x => x.Name == "Small"))
-                    .AddCover(context.Covers.FirstOrDefault(x => x.Name == "Tomato Sauce"), 1)
-                    .AddCover(context.Covers.FirstOrDefault(x => x.Name == "Cheese"), 1)
-                    .AddTopping(context.Toppings.FirstOrDefault(x => x.Name == "Pepperoni"), 2)
-                    .AddWork(context.Works.FirstOrDefault(x => x.Name == "Bake"), 1)
-                    .AddWork(context.Works.FirstOrDefault(x => x.Name == "Cut"), 3)
-                    .Build();
-                context.OfficialRecipes.Add(elm);
+                
 
                 context.SaveChanges();
             }

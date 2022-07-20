@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PigeonPizza.Models.Basics
 {
-    public class PizzaBasicsScale
+    public class PizzaScale
     {
         [Key]
         public int Id { get; set; }
@@ -26,7 +26,7 @@ namespace PigeonPizza.Models.Basics
         }
 
         #region Constructor
-        public PizzaBasicsScale()
+        public PizzaScale()
         {
             Name = null;
             Diameter = 0;
@@ -34,7 +34,7 @@ namespace PigeonPizza.Models.Basics
             InStock = false;
         }
 
-        public PizzaBasicsScale(string name, decimal diameter, string description = null)
+        public PizzaScale(string name, decimal diameter, string description = null)
         {
             Name = name;
             Diameter = diameter;
@@ -44,8 +44,7 @@ namespace PigeonPizza.Models.Basics
         #endregion
 
         #region Navigation
-        public ICollection<PizzaCustomRecipe> CustomRecipes { get; set; } = new List<PizzaCustomRecipe>();
-        public ICollection<PizzaOfficialRecipe> OfficialRecipes { get; set; } = new List<PizzaOfficialRecipe>();
+        public ICollection<PizzaRecipe> Recipes { get; set; }
         #endregion
     }
 }
