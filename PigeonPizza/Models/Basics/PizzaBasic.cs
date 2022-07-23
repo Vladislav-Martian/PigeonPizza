@@ -42,7 +42,6 @@ namespace PigeonPizza.Models.Basics
         #endregion
 
         #region Navigation
-        public ICollection<BasicsTask> Tasks { get; set; }
         #endregion
     }
 }

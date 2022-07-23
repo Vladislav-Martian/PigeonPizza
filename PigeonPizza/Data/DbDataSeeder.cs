@@ -4,8 +4,7 @@ using PigeonPizza.Contexts;
 using PigeonPizza.Models.Basics;
 using System.Linq;
 using System.Collections.Generic;
-//using PigeonPizza.Models.Complex;
-//using PigeonPizza.Models.Controls;
+using PigeonPizza.Models.Complex;
 
 namespace PigeonPizza.Data
 {
@@ -85,7 +84,34 @@ namespace PigeonPizza.Data
                 var context = scope.ServiceProvider.GetService<AppDbContext>();
                 context.Database.EnsureCreated();
 
-                
+                var toAdd = new List<PizzaRecipe>();
+
+                toAdd.Add(
+                    new PizzaRecipe.Builder()
+                    .SetScale(context.Scales.FirstOrDefault(x => x.Name == "Normal"))
+                    .SetDough(context.Doughs.FirstOrDefault(x => x.Name == "White"))
+                    .AddBasic(context.Basics.FirstOrDefault(x => x.Name == "Ketchup"), 1)
+                    .AddBasic(context.Basics.FirstOrDefault(x => x.Name == "Mozzarella"), 2)
+                    .AddBasic(context.Basics.FirstOrDefault(x => x.Name == "Pepperoni"), 2)
+                    .Publish("Pepperoni pizza", "White-dough-based normal-scaled pizza")
+                    .Build());
+
+                foreach (var item in toAdd)
+                {
+                    for (int i = 0; i < item.Tasks.Count; i++)
+                    {
+                        // load all of elementary tasks to the db
+                        var task = (item.Tasks as IList<BasicsTask>)[i];
+                        (item.Tasks as IList<BasicsTask>)[i] = context.BasicsTasks.Add(task).Entity;
+                    }
+
+                    if (item.Publish != null)
+                    {
+                        context.PublishReceipes.Add(item.Publish);
+                    }
+
+                    context.PizzaRecipes.Add(item);
+                }
 
                 context.SaveChanges();
             }

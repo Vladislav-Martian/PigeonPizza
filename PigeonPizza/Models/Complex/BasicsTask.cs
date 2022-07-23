@@ -24,9 +24,5 @@ namespace PigeonPizza.Models.Complex
             Element = element;
             Amount = amount;
         }
-
-        #region Navigation
-        public ICollection<PizzaRecipe> Recipes { get; set; }
-        #endregion
     }
 }

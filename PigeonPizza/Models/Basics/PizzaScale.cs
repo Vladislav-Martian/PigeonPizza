@@ -44,7 +44,6 @@ namespace PigeonPizza.Models.Basics
         #endregion
 
         #region Navigation
-        public ICollection<PizzaRecipe> Recipes { get; set; }
         #endregion
     }
 }

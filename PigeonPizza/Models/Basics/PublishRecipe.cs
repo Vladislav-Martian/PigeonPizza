@@ -13,16 +13,10 @@ namespace PigeonPizza.Models.Basics
         [StringLength(500)]
         public string Description { get; set; }
 
-        #region Navigation
-        public ICollection<PizzaRecipe> Recipes { get; set; }
-
         public PublishRecipe(string name, string description)
         {
             Name = name;
             Description = description;
         }
-
-
-        #endregion
     }
 }

@@ -55,6 +55,11 @@ namespace PigeonPizza.Models.Complex
 
             public Builder AddBasic(PizzaBasic element, int amount)
             {
+                if (element == null)
+                {
+                    return this;
+                }
+
                 if (Recipe.Tasks == null)
                 {
                     Recipe.Tasks = new List<BasicsTask>();
