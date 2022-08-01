@@ -26,7 +26,6 @@ namespace PigeonPizza.Controllers
         public async Task<ActionResult<IEnumerable<PizzaRecipe>>> GetPizzaRecipes()
         {
             return await _context.PizzaRecipes
-                .Include(x => x.Scale)
                 .Include(x => x.Dough)
                 .Include(x => x.Publish)
                 .Include(x => x.Tasks)
@@ -40,7 +39,6 @@ namespace PigeonPizza.Controllers
         {
             //var pizzaRecipe = await _context.PizzaRecipes.FindAsync(id);
             var pizzaRecipe = await _context.PizzaRecipes
-                .Include(x => x.Scale)
                 .Include(x => x.Dough)
                 .Include(x => x.Publish)
                 .Include(x => x.Tasks)

@@ -11,8 +11,6 @@ namespace PigeonPizza.Models.Complex
 
         #region Recipe
         [Required]
-        public PizzaScale Scale { get; set; }
-        [Required]
         public PizzaDough Dough { get; set; }
         public PublishRecipe Publish { get; set; }
         public ICollection<BasicsTask> Tasks { get; set; }
@@ -35,12 +33,6 @@ namespace PigeonPizza.Models.Complex
             public PizzaRecipe Build() => Recipe;
 
             #region Construct
-            public Builder SetScale(PizzaScale element)
-            {
-                Recipe.Scale = element;
-                return this;
-            }
-
             public Builder SetDough(PizzaDough element)
             {
                 Recipe.Dough = element;

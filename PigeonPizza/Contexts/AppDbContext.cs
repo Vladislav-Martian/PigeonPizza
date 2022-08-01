@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PigeonPizza.Models.Basics;
 using PigeonPizza.Models.Complex;
+using PigeonPizza.Models.Control;
 
 namespace PigeonPizza.Contexts
 {
@@ -35,5 +36,9 @@ namespace PigeonPizza.Contexts
                 .HasIndex(u => u.Name)
                 .IsUnique();
         }
+
+        public DbSet<PigeonPizza.Models.Control.User> User { get; set; }
+
+        public DbSet<PigeonPizza.Models.Control.Order> Order { get; set; }
     }
 }

@@ -88,7 +88,6 @@ namespace PigeonPizza.Data
 
                 toAdd.Add(
                     new PizzaRecipe.Builder()
-                    .SetScale(context.Scales.FirstOrDefault(x => x.Name == "Normal"))
                     .SetDough(context.Doughs.FirstOrDefault(x => x.Name == "White"))
                     .AddBasic(context.Basics.FirstOrDefault(x => x.Name == "Ketchup"), 1)
                     .AddBasic(context.Basics.FirstOrDefault(x => x.Name == "Mozzarella"), 2)
